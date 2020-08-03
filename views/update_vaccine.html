@@ -1,0 +1,21 @@
+% rebase('base.html')
+
+<form action="/update" method="POST" id="update">
+    <label>Name:</label>
+    <br>
+    <input type="text" name="name" value="{{vac['name']}}" readonly>
+    <br>
+    <label>Type:</label>
+    <br>
+    <input type="text" name="type" required value="{{vac['type']}}">
+    <br>
+    <label>Stage: </label>
+    <br>
+    <input type="text" name="stage" required value="{{vac['stage']}}">
+    <br>
+    <label>Details: </label>
+    <br>
+    <textarea name="info" form="update" rows="5" cols="50">{{vac['info']}}</textarea>
+    <br>
+    <input type="submit" value="submit">
+</form>

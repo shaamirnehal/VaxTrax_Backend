@@ -1,0 +1,21 @@
+% rebase('base.html')
+
+<form action="/vaccine" method="POST" id="new">
+    <label>Name:</label>
+    <br>
+    <input type="text" name="name" required>
+    <br>
+    <label>Type:</label>
+    <br>
+    <input type="text" name="type" required>
+    <br>
+    <label>Stage: </label>
+    <br>
+    <input type="text" name="stage" required>
+    <br>
+    <label>Details: </label>
+    <br>
+    <textarea name="info" form="new" rows="5" cols="50"></textarea>
+    <br>
+    <input type="submit" value="submit">
+</form>
