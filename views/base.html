@@ -3,19 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <title>VaxTrax</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+
+        th {
+            background-color: #367FBF;
+            color: white;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #00a2ff;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* Change the link color to #111 (black) on hover */
+        li a:hover {
+            background-color: #367FBF;
+        }
+
+        header a {
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .header h1 {
+            background-color: #00a2ff;
+            padding: .5em;
+            margin: 0;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #00a2ff;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            height: 100%;
+            position: relative;
+            padding: 1em;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
 
-    <header>
-        <h1>VaxTrax</h1>
-    </header>
+<header class="header">
+    <a href="/"><h1>VaxTrax</h1></a>
+</header>
 
-    <div class="content">
+<div>
+    <ul>
+        <li><a href="/new_vaccine">New Vaccine</a></li>
+        <li><a href="/quizOne">Quiz Answers</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="vertical-center">
         {{!base}}
     </div>
+</div>
 
-    <footer>
-        <p>Copyright &copy; 2020 VaxTrax</p>
-    </footer>
+<div class="footer">
+    <p>Copyright &copy; 2020 VaxTrax</p>
+</div>
 </body>
 </html>

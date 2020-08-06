@@ -1,0 +1,19 @@
+% rebase('base.html')
+<table style="width:100%">
+    <tr>
+        <th>Question Id</th>
+        <th>Option One</th>
+        <th>Option Two</th>
+        <th>Option Three</th>
+        <th>Option Four</th>
+    </tr>
+    % for a in ans:
+        <tr>
+            <td>{{a['question_id']}}</td>
+            <td>{{a['optionOne']}}</td>
+            <td>{{a['optionTwo']}}</td>
+            <td>{{a['optionThree']}}</td>
+            <td>{{a['optionFour']}}</td>
+        </tr>
+    %end
+</table>

@@ -24,12 +24,45 @@ class VaxTraxDb:
                 name text,
                 type text,
                 stage text,
-                info text);"""
+                info text);
+                
+            DROP TABLE IF EXISTS quiz;
+            CREATE TABLE quiz (
+                question_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                question text,
+                optionOne text,
+                optionTwo text,
+                optionThree text,
+                optionFour text);
+                
+            DROP TABLE IF EXISTS quizAnswers;
+            CREATE TABLE quizAnswers ( 
+                question_id integer UNIQUE NOT NULL,
+                optionOne integer,
+                optionTwo integer,
+                optionThree integer,
+                optionFour integer,
+                FOREIGN KEY(question_id) REFERENCES quiz(question_id));
+                
+            DROP TABLE IF EXISTS quizTwo;
+            CREATE TABLE quizTwo (
+                question_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                question text,
+                optionOne text,
+                optionTwo text);
+                    
+            DROP TABLE IF EXISTS quizTwoAnswers;
+            CREATE TABLE quizTwoAnswers (
+                question_id integer UNIQUE NOT NULL,
+                optionOne integer,
+                optionTwo integer,
+                FOREIGN KEY(question_id) REFERENCES quizTwo(question_id));
+        """
 
         self.conn.executescript(sql)
         self.conn.commit()
 
-    def insert_sample_data(self):
+    def insert_vaccine_data(self):
         cursor = self.cursor()
         vaccines = [
             ("Amgen and Adaptive Biotechnologies", "Anti-body treatment", "Preclinical",
@@ -75,8 +108,68 @@ class VaxTraxDb:
             cursor.execute(sqlite, v)
             self.commit()
 
+    def insert_quiz_data(self):
+        cursor = self.cursor()
+        quiz = [
+            ("What country has the most number of active COVID-19 cases currently in the world?", "United States", "China", "Brazil", "Russia"),
+            ("What is the most common symptom of COVID-19?", "Loss of smell and taste", "Fever", "Dry cough", "Depression"),
+            ("What are the appropriate steps I should take if I develop COVID-19 like symptoms?", "Visit a medical professional", "Self isolate for 14 days", "Self isolate for 7 days", "Drink hot water"),
+            ("Would you rather know about vaccine developments in private sectors, public sectors or both?", "Private sector", "Public sector", "Both", "None"),
+        ]
+
+        for q in quiz:
+            sqlite = "INSERT INTO quiz (question, optionOne, optionTwo, optionThree, optionFour) VALUES (?,?,?,?,?)"
+            cursor.execute(sqlite, q)
+            self.commit()
+
+    def insert_quiz_ans(self):
+        cursor = self.cursor()
+
+        answer = [
+            (1, 20, 6, 3, 1),
+            (2, 6, 5, 19, 0),
+            (3, 12, 11, 1, 6),
+            (4, 6, 9, 15, 0),
+        ]
+        for a in answer:
+            query = "INSERT INTO quizAnswers (question_id, optionOne, optionTwo, optionThree, optionFour) VALUES (?,?,?,?,?)"
+            cursor.execute(query, a)
+            self.commit()
+
+    def insert_quiz_two_data(self):
+        cursor = self.cursor()
+        quiz_two = [
+            ("Are you interested to learn more about this pandemic that is taking the world by storm?", "Yes", "No"),
+            ("Would you like to know about the vaccine development lifecycle?", "Yes", "No"),
+            ("Do you feel overwhelmed by the current volume of data being presented to you in the media about coronavirus?", "Yes", "No"),
+            ("Which area of Covid-19 are you more unfamiliar with?", "Prevention methods", "Current trends in your country and around the world")
+        ]
+
+        for q in quiz_two:
+            sqlite = "INSERT INTO quizTwo (question, optionOne, optionTwo) VALUES (?,?,?)"
+            cursor.execute(sqlite, q)
+            self.commit()
+
+    def insert_quiz_two_ans(self):
+        cursor = self.cursor()
+
+        answer = [
+            (1, 30, 0),
+            (2, 27, 3),
+            (3, 25, 5),
+            (4, 14, 16),
+        ]
+        for a in answer:
+            query = "INSERT INTO quizTwoAnswers (question_id, optionOne, optionTwo) VALUES (?,?,?)"
+            cursor.execute(query, a)
+            self.commit()
+
 
 if __name__ == '__main__':
     db = VaxTraxDb()
     db.create_tables()
-    db.insert_sample_data()
+    db.insert_vaccine_data()
+    db.insert_quiz_data()
+    db.insert_quiz_ans()
+    db.insert_quiz_two_data()
+    db.insert_quiz_two_ans()

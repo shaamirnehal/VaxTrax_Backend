@@ -60,6 +60,57 @@ def put_vaccine():
     return '<b>Vaccine Updated, redirect to <a href=/>Home</a></b>!'
 
 
+@app.route('/quizOne', method='PUT')
+def quiz_one():
+    arr = request.forms.get('data')
+    json_arr = json.loads(arr)
+    for ans in json_arr:
+        answer = {
+            "question_id": ans["questionId"],
+            "optionOne": ans["optionOne"],
+            "optionTwo": ans["optionTwo"],
+            "optionThree": ans["optionThree"],
+            "optionFour": ans["optionFour"]
+        }
+        current = get_quizanswers(db, answer["question_id"])
+        for key in answer:
+            if answer[key] is True:
+                current[key] += 1
+                break
+        upd8_quizanswers(db, current)
+
+
+@app.route('/quizTwo', method='PUT')
+def quiz_two():
+    arr = request.forms.get('data')
+    json_arr = json.loads(arr)
+    for ans in json_arr:
+        answer = {
+            "question_id": ans["questionId"],
+            "optionOne": ans["optionOne"],
+            "optionTwo": ans["optionTwo"]
+        }
+        current = get_quiztwoanswers(db, answer["question_id"])
+        for key in answer:
+            if answer[key] is True:
+                current[key] += 1
+                break
+        upd8_quiztwoanswers(db, current)
+
+
+@app.route('/quizOne', method='GET')
+def quiz_one():
+    ans = list_answers(db)
+    # ans_2 = list_quiztwoanswers(db)
+    return template('quiz_one', ans=ans)
+
+
+@app.route('/quizTwo', method='GET')
+def quiz_one():
+    ans = list_quiztwoanswers(db)
+    return template('quiz_two', ans=ans)
+
+
 if __name__ == '__main__':
     db = VaxTraxDb()
     app.run(debug=True)
