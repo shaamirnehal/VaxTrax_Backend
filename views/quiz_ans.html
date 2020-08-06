@@ -1,0 +1,43 @@
+% rebase('base.html')
+<div class="container">
+    <div class="myDiv">
+        <h3 style="background-color: #00a2ff; color: #fff; margin: 0; padding: .5em; text-align: center;">
+            Question Group 1
+        </h3>
+        <table>
+            <tr>
+                <th>Question Id</th>
+                <th>Option One</th>
+                <th>Option Two</th>
+                <th>Option Three</th>
+                <th>Option Four</th>
+            </tr>
+            % for elem in ans['four']:
+            <tr>
+                <td>{{elem['question_id']}}</td>
+                <td>{{elem['optionOne']}}</td>
+                <td>{{elem['optionTwo']}}</td>
+                <td>{{elem['optionThree']}}</td>
+                <td>{{elem['optionFour']}}</td>
+            </tr>
+            %end
+        </table>
+        <h3 style="background-color: #00a2ff; color: #fff; margin: 0; padding: .5em; text-align: center;">
+            Question Group 2
+        </h3>
+        <table>
+            <tr>
+                <th>Question Id</th>
+                <th>Option One</th>
+                <th>Option Two</th>
+            </tr>
+            % for elem in ans['two']:
+            <tr>
+                <td>{{elem['question_id']}}</td>
+                <td>{{elem['optionOne']}}</td>
+                <td>{{elem['optionTwo']}}</td>
+            </tr>
+            %end
+        </table>
+    </div>
+</div>

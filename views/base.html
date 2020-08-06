@@ -1,35 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>VaxTrax</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            margin: 0
+            margin: 0;
+            height: 100%;
+            font-family: Arial;
         }
+
+        .banner {
+            padding: 60px;
+            text-align: center;
+            background: #00a2ff;
+            color: white;
+            font-size: 30px;
+        }
+
+        .banner-fail {
+            padding: 60px;
+            text-align: center;
+            background: red;
+            color: white;
+            font-size: 30px;
+        }
+
+        .banner-suc {
+            padding: 60px;
+            text-align: center;
+            background: green;
+            color: white;
+            font-size: 30px;
+        }
+
         table {
             border-collapse: collapse;
             width: 100%;
+            margin-top: .5em;
+            margin-bottom: .5em;
         }
 
-        th, td {
+        th,
+        td {
             text-align: left;
             padding: 8px;
         }
 
-        tr:nth-child(even){background-color: #f2f2f2}
+        tr:nth-child(even) {
+            background-color: #dadada
+        }
 
         th {
             background-color: #367FBF;
             color: white;
         }
+
         ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #00a2ff;
+            background-color: #367FBF;
         }
 
         li {
@@ -46,7 +80,7 @@
 
         /* Change the link color to #111 (black) on hover */
         li a:hover {
-            background-color: #367FBF;
+            background-color: #00a2ff;
         }
 
         header a {
@@ -73,35 +107,77 @@
         }
 
         .container {
-            height: 100%;
-            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1000px;
+            float: none;
             padding: 1em;
-            text-align: center;
         }
 
+        input[type=text],
+        textarea {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=text]:focus,
+        textarea:focus {
+            border: 2px solid #367FBF;
+            outline-width: 0;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #367FBF;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #00a2ff;
+        }
+
+        .myDiv {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
     </style>
 </head>
+
 <body>
 
-<header class="header">
-    <a href="/"><h1>VaxTrax</h1></a>
-</header>
+    <header class="header">
+        <a href="/">
+            <h1>VaxTrax</h1>
+        </a>
+    </header>
 
-<div>
-    <ul>
-        <li><a href="/new_vaccine">New Vaccine</a></li>
-        <li><a href="/quizOne">Quiz Answers</a></li>
-    </ul>
-</div>
-
-<div class="container">
-    <div class="vertical-center">
-        {{!base}}
+    <div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/new_vaccine">New Vaccine</a></li>
+            <li><a href="/search_vac">Update Vaccine</a></li>
+            <li><a href="/quizAns">Quiz Answers</a></li>
+        </ul>
     </div>
-</div>
 
-<div class="footer">
-    <p>Copyright &copy; 2020 VaxTrax</p>
-</div>
+    <!-- <div class="container"> -->
+    {{!base}}
+    <!-- </div> -->
+
+    <div class="footer">
+        <p>Copyright &copy; 2020 VaxTrax</p>
+    </div>
 </body>
+
 </html>

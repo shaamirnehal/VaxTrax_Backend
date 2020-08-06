@@ -4,6 +4,7 @@ import sqlite3
 class VaxTraxDb:
 
     def __init__(self, dbname="vaxtrax.db"):
+        """init db connection"""
         self.dbname = dbname
         self.conn = sqlite3.connect(self.dbname)
         self.conn.text_factory = str
@@ -18,6 +19,7 @@ class VaxTraxDb:
         self.conn.commit()
 
     def create_tables(self):
+        """Create database tables"""
         sql = """
             DROP TABLE IF EXISTS vaccines;
             CREATE TABLE vaccines (
@@ -63,6 +65,7 @@ class VaxTraxDb:
         self.conn.commit()
 
     def insert_vaccine_data(self):
+        """insert sample data to vaccine table"""
         cursor = self.cursor()
         vaccines = [
             ("Amgen and Adaptive Biotechnologies", "Anti-body treatment", "Preclinical",
@@ -109,12 +112,17 @@ class VaxTraxDb:
             self.commit()
 
     def insert_quiz_data(self):
+        """insert sample data to quiz for question type 1"""
         cursor = self.cursor()
         quiz = [
-            ("What country has the most number of active COVID-19 cases currently in the world?", "United States", "China", "Brazil", "Russia"),
-            ("What is the most common symptom of COVID-19?", "Loss of smell and taste", "Fever", "Dry cough", "Depression"),
-            ("What are the appropriate steps I should take if I develop COVID-19 like symptoms?", "Visit a medical professional", "Self isolate for 14 days", "Self isolate for 7 days", "Drink hot water"),
-            ("Would you rather know about vaccine developments in private sectors, public sectors or both?", "Private sector", "Public sector", "Both", "None"),
+            ("What country has the most number of active COVID-19 cases currently in the world?",
+             "United States", "China", "Brazil", "Russia"),
+            ("What is the most common symptom of COVID-19?",
+             "Loss of smell and taste", "Fever", "Dry cough", "Depression"),
+            ("What are the appropriate steps I should take if I develop COVID-19 like symptoms?",
+             "Visit a medical professional", "Self isolate for 14 days", "Self isolate for 7 days", "Drink hot water"),
+            ("Would you rather know about vaccine developments in private sectors, public sectors or both?",
+             "Private sector", "Public sector", "Both", "None"),
         ]
 
         for q in quiz:
@@ -123,6 +131,7 @@ class VaxTraxDb:
             self.commit()
 
     def insert_quiz_ans(self):
+        """insert sample data to quiz solution for question type 1"""
         cursor = self.cursor()
 
         answer = [
@@ -137,12 +146,14 @@ class VaxTraxDb:
             self.commit()
 
     def insert_quiz_two_data(self):
+        """insert sample data to quiz for question type 2"""
         cursor = self.cursor()
         quiz_two = [
             ("Are you interested to learn more about this pandemic that is taking the world by storm?", "Yes", "No"),
             ("Would you like to know about the vaccine development lifecycle?", "Yes", "No"),
             ("Do you feel overwhelmed by the current volume of data being presented to you in the media about coronavirus?", "Yes", "No"),
-            ("Which area of Covid-19 are you more unfamiliar with?", "Prevention methods", "Current trends in your country and around the world")
+            ("Which area of Covid-19 are you more unfamiliar with?",
+             "Prevention methods", "Current trends in your country and around the world")
         ]
 
         for q in quiz_two:
@@ -151,6 +162,7 @@ class VaxTraxDb:
             self.commit()
 
     def insert_quiz_two_ans(self):
+        """insert sample data to quiz solution for question type 2"""
         cursor = self.cursor()
 
         answer = [

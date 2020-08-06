@@ -1,4 +1,7 @@
 def list_vaccines(db):
+    """get list of vaccines from database
+    @params: db => database connection
+    """
     cursor = db.cursor()
     cursor.execute("""select * from vaccines""")
     vac_list = []
@@ -14,6 +17,10 @@ def list_vaccines(db):
 
 
 def get_vac(db, name):
+    """get vaccine from database
+    @params: db => database connection
+    @params: name => name of vaccine
+    """
     cursor = db.cursor()
     cursor.execute("""select * from vaccines where name=?""", (name,))
     vac = {
@@ -31,13 +38,22 @@ def get_vac(db, name):
 
 
 def insert_vaccine(db, vac):
+    """insert vaccine inside database
+    @params: db => database connection
+    @params: vac => vaccine object
+    """
     cursor = db.cursor()
     query = "INSERT INTO vaccines (name, type, stage, info) VALUES (?, ?, ?, ?)"
-    cursor.execute(query, (vac["name"], vac["type"], vac["stage"], vac["info"]))
+    cursor.execute(query, (vac["name"], vac["type"],
+                           vac["stage"], vac["info"]))
     db.commit()
 
 
 def upd8_vaccine(db, vac):
+    """update vaccine inside database
+    @params: db => database connection
+    @params: vac => vaccine object
+    """
     cursor = db.cursor()
     sql = """UPDATE vaccines SET type = ?, stage = ?, info = ? WHERE name = ?"""
     cursor.execute(sql, (vac['type'], vac['stage'], vac['info'], vac['name']))
@@ -46,6 +62,9 @@ def upd8_vaccine(db, vac):
 
 
 def list_answers(db):
+    """get list of answers from database for qustion type 1
+    @params: db => database connection
+    """
     cursor = db.cursor()
     cursor.execute("""SELECT * FROM quizAnswers""")
     ans_list = []
@@ -62,8 +81,13 @@ def list_answers(db):
 
 
 def get_quizanswers(db, question_id):
+    """get answer from database for question type 1
+    @params: db => database connection
+    @params: question_id => id of question
+    """
     cursor = db.cursor()
-    cursor.execute("""select * from quizAnswers where question_id=?""", (question_id,))
+    cursor.execute(
+        """select * from quizAnswers where question_id=?""", (question_id,))
     ans = {
         "question_id": "",
         "optionOne": "",
@@ -81,15 +105,23 @@ def get_quizanswers(db, question_id):
 
 
 def upd8_quizanswers(db, ans):
+    """update answer from database for question type 1
+    @params: db => database connection
+    @params: ans => ans object
+    """
     cursor = db.cursor()
     sql = """UPDATE quizAnswers SET optionOne = ?, optionTwo = ?, optionThree = ?, optionFour = ? WHERE question_id = ?"""
-    cursor.execute(sql, (ans['optionOne'], ans['optionTwo'], ans['optionThree'], ans['optionFour'], ans['question_id']))
+    cursor.execute(sql, (ans['optionOne'], ans['optionTwo'],
+                         ans['optionThree'], ans['optionFour'], ans['question_id']))
     db.commit()
 
 # methods for quizTwoAnswers
 
 
 def list_quiztwoanswers(db):
+    """get list of answers from database for qustion type 2
+    @params: db => database connection
+    """
     cursor = db.cursor()
     cursor.execute("""SELECT * FROM quizTwoAnswers""")
     ans_list = []
@@ -104,8 +136,13 @@ def list_quiztwoanswers(db):
 
 
 def get_quiztwoanswers(db, question_id):
+    """get answer from database for question type 2
+    @params: db => database connection
+    @params: question_id => id of question
+    """
     cursor = db.cursor()
-    cursor.execute("""select * from quizTwoAnswers where question_id=?""", (question_id,))
+    cursor.execute(
+        """select * from quizTwoAnswers where question_id=?""", (question_id,))
     anstwo = {
         "question_id": "",
         "optionOne": "",
@@ -119,9 +156,12 @@ def get_quiztwoanswers(db, question_id):
 
 
 def upd8_quiztwoanswers(db, anstwo):
+    """update answer from database for question type 2
+    @params: db => database connection
+    @params: ans => ans object
+    """
     cursor = db.cursor()
     sql = """UPDATE quizTwoAnswers SET optionOne = ?, optionTwo = ? WHERE question_id = ?"""
-    cursor.execute(sql, (anstwo['optionOne'], anstwo['optionTwo'], anstwo['question_id']))
+    cursor.execute(sql, (anstwo['optionOne'],
+                         anstwo['optionTwo'], anstwo['question_id']))
     db.commit()
-
-
